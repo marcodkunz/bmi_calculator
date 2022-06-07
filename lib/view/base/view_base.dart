@@ -15,8 +15,7 @@ class ViewBase<T extends ViewModelBase?> extends StatefulWidget {
   ViewBase(
       {Key? key, required this.viewModel, required this.builder, this.onReady})
       : super(key: key) {
-    assert(viewModel != null,
-        'Model and Builder must be provided');
+    assert(viewModel != null, 'Model and Builder must be provided');
   }
 
   @override

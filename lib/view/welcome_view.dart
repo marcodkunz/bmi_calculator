@@ -2,8 +2,8 @@ import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/welcome_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:injectable/injectable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class WelcomeView extends StatelessWidget {
@@ -20,7 +20,10 @@ class WelcomeView extends StatelessWidget {
             builder: (context, model, child) {
               return Center(
                 child: TextButton(
-                  child: Text(AppLocalizations.of(context)!.welcomeContinue, style: TextStyles.BodyMediumBlack,),
+                  child: Text(
+                    AppLocalizations.of(context)!.welcomeContinue,
+                    style: TextStyles.BodyMediumBlack,
+                  ),
                   onPressed: model?.onSubmit,
                 ),
               );

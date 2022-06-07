@@ -14,7 +14,9 @@ class _StartScreenState extends State<StartScreen> {
       appBar: AppBar(
         title: const Text("Start Screen"),
       ),
-      body: const Center(child: Text("This is the start screen"),),
+      body: const Center(
+        child: Text("This is the start screen"),
+      ),
     );
   }
 }
