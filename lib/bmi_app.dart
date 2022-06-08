@@ -3,8 +3,12 @@ import 'package:bmi_calculator/common/configuration.dart';
 import 'package:bmi_calculator/common/routes.dart';
 import 'package:bmi_calculator/service/logging/logger.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
-import 'package:bmi_calculator/view/start_screen.dart';
-import 'package:bmi_calculator/view/welcome_view.dart';
+import 'package:bmi_calculator/style/themes.dart';
+import 'package:bmi_calculator/view/history_view.dart';
+import 'package:bmi_calculator/view/home_view.dart';
+import 'package:bmi_calculator/view/info_view.dart';
+import 'package:bmi_calculator/view/input_view.dart';
+import 'package:bmi_calculator/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
@@ -24,10 +28,16 @@ class BmiApp extends StatefulWidget {
 class _BmiAppState extends State<BmiApp> {
   Route _getPageRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.startScreen:
-        return _createRoute(settings, const StartScreen(), false);
-      case Routes.welcomeView:
-        return _createRoute(settings, getIt<WelcomeView>(), false);
+      case Routes.splashView:
+        return _createRoute(settings, getIt<SplashView>(), false);
+      case Routes.homeView:
+        return _createRoute(settings, getIt<HomeView>(), false);
+      case Routes.inputView:
+        return _createRoute(settings, getIt<InputView>(), false);
+      case Routes.historyView:
+        return _createRoute(settings, getIt<HistoryView>(), false);
+      case Routes.infoView:
+        return _createRoute(settings, getIt<InfoView>(), false);
       default:
         return _createRoute(
             settings,
@@ -50,9 +60,10 @@ class _BmiAppState extends State<BmiApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "BMI",
+      theme: Themes.dark,
       debugShowCheckedModeBanner:
           widget.configuration.environment == Envi.development,
-      initialRoute: Routes.welcomeView,
+      initialRoute: Routes.splashView,
       onGenerateRoute: _getPageRoute,
       navigatorKey: widget.navigationService.globalNavigator,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
