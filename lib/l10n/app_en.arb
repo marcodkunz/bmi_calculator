@@ -1,0 +1,6 @@
+{
+  "welcomeContinue": "Continue",
+  "@welcomeContinue": {
+    "description": "Continue label for button"
+  }
+}
