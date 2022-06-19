@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/style/color_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/splash_view_model.dart';
 import 'package:flutter/material.dart';
