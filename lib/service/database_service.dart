@@ -7,6 +7,8 @@ import 'package:sqflite/sqflite.dart';
 
 abstract class IDatabaseService {
   Future<void> insertUserEntry(UserEntry userEntry);
+
+  Future<List<UserEntry>> getAllUserEntries([int? limit]);
 }
 
 @Injectable(as: IDatabaseService)
@@ -45,5 +47,16 @@ class DatabaseService implements IDatabaseService {
     if (_id <= 0) {
       _logger.e('DatabaseService', 'Could not insert UserEntry: $userEntry');
     }
+  }
+
+  @override
+  Future<List<UserEntry>> getAllUserEntries([int? limit]) async {
+    await _initialize();
+    var _usersList = await _database!.query(_tableBmi, limit: limit);
+    var _users = <UserEntry>[];
+    _usersList.forEach((map) {
+      _users.add(UserEntry.fromMap(map));
+    });
+    return _users;
   }
 }
