@@ -10,14 +10,15 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'bmi_app.dart' as _i10;
 import 'common/configuration.dart' as _i3;
-import 'module/app_module.dart' as _i18;
+import 'module/app_module.dart' as _i19;
+import 'service/database_service.dart' as _i13;
 import 'service/logging/logger.dart' as _i5;
 import 'service/navigation/navigation_service.dart' as _i6;
-import 'view/history_view.dart' as _i16;
-import 'view/home_view.dart' as _i17;
-import 'view/info_view.dart' as _i13;
-import 'view/input_view.dart' as _i14;
-import 'view/splash_view.dart' as _i15;
+import 'view/history_view.dart' as _i17;
+import 'view/home_view.dart' as _i18;
+import 'view/info_view.dart' as _i14;
+import 'view/input_view.dart' as _i15;
+import 'view/splash_view.dart' as _i16;
 import 'viewmodel/history_view_model.dart' as _i11;
 import 'viewmodel/home_view_model.dart' as _i12;
 import 'viewmodel/info_view_model.dart' as _i7;
@@ -56,14 +57,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i11.HistoryViewModel(get<_i6.INavigationService>()));
   gh.factory<_i12.HomeViewModel>(
       () => _i12.HomeViewModel(get<_i6.INavigationService>()));
-  gh.factory<_i13.InfoView>(() => _i13.InfoView(get<_i7.InfoViewModel>()));
-  gh.factory<_i14.InputView>(() => _i14.InputView(get<_i8.InputViewModel>()));
-  gh.factory<_i15.SplashView>(
-      () => _i15.SplashView(get<_i9.SplashViewModel>()));
-  gh.factory<_i16.HistoryView>(
-      () => _i16.HistoryView(get<_i11.HistoryViewModel>()));
-  gh.factory<_i17.HomeView>(() => _i17.HomeView(get<_i12.HomeViewModel>()));
+  gh.factory<_i13.IDatabaseService>(
+      () => _i13.DatabaseService(get<_i3.Configuration>(), get<_i5.ILogger>()));
+  gh.factory<_i14.InfoView>(() => _i14.InfoView(get<_i7.InfoViewModel>()));
+  gh.factory<_i15.InputView>(() => _i15.InputView(get<_i8.InputViewModel>()));
+  gh.factory<_i16.SplashView>(
+      () => _i16.SplashView(get<_i9.SplashViewModel>()));
+  gh.factory<_i17.HistoryView>(
+      () => _i17.HistoryView(get<_i11.HistoryViewModel>()));
+  gh.factory<_i18.HomeView>(() => _i18.HomeView(get<_i12.HomeViewModel>()));
   return get;
 }
 
-class _$AppModule extends _i18.AppModule {}
+class _$AppModule extends _i19.AppModule {}
