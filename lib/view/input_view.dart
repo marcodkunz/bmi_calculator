@@ -1,10 +1,10 @@
 import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/input_view_model.dart';
-import 'package:bmi_calculator/widget/slider.dart';
+import 'package:bmi_calculator/widget/custom_slider.dart';
+import 'package:bmi_calculator/widget/rounded_card.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import '../style/color_styles.dart';
 
 @injectable
 class InputView extends StatelessWidget {
@@ -31,20 +31,13 @@ class InputView extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, right: 10),
-                            child: InkWell(
-                              child: Card(
-                                color: ColorStyles.petrol,
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: SizedBox(
-                                    height: _cardHeight,
-                                    child: Center(
-                                      child: Image.asset(
-                                        'lib/assets/images/female.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                            child: RoundedCard(
+                              onPressed: model?.onFemaleSelected,
+                              height: _cardHeight,
+                              color: model?.colorFemaleCard,
+                              child: Icon(
+                                Icons.female,
+                                size: 120,
                               ),
                             ),
                           ),
@@ -52,20 +45,13 @@ class InputView extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(left: 10, right: 20),
-                            child: InkWell(
-                              child: Card(
-                                color: ColorStyles.petrol,
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: SizedBox(
-                                    height: _cardHeight,
-                                    child: Center(
-                                      child: Image.asset(
-                                        'lib/assets/images/male.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                            child: RoundedCard(
+                              onPressed: model?.onMaleSelected,
+                              height: _cardHeight,
+                              color: model?.colorMaleCard,
+                              child: Icon(
+                                Icons.male,
+                                size: 120,
                               ),
                             ),
                           ),
@@ -76,15 +62,26 @@ class InputView extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         left: 20, top: 10, right: 20, bottom: 20),
-                    child: InkWell(
-                      child: SizedBox(
-                        height: _cardHeight,
-                        child: Card(
-                          color: ColorStyles.petrol,
-                          child: Center(
-                            child : SliderHeight(),
+                    child: RoundedCard(
+                      height: _cardHeight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Height:",
+                            style: TextStyles.BodyMediumWhite,
                           ),
-                        ),
+                          Text(
+                            "${model?.currentHeight.toInt()} cm",
+                            style: TextStyles.TitleMediumWhite,
+                          ),
+                          CustomSlider(
+                            min: 10,
+                            max: 230,
+                            initial: model?.currentHeight ?? 170,
+                            onChanged: model?.onHeightChanged,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -95,18 +92,12 @@ class InputView extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, right: 10),
-                            child: InkWell(
-                              child: Card(
-                                color: ColorStyles.petrol,
-                                child: SizedBox(
-                                  height: _cardHeight,
-                                  child: Center(
-                                    child: Text(
-                                      "Info",
-                                      style: TextStyles.BodyMediumWhite,
-                                    ),
-                                  ),
-                                ),
+                            child: RoundedCard(
+                              onPressed: model?.onInfoPressed,
+                              height: _cardHeight,
+                              child: Text(
+                                "Info",
+                                style: TextStyles.BodyMediumWhite,
                               ),
                             ),
                           ),
@@ -114,18 +105,12 @@ class InputView extends StatelessWidget {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(left: 10, right: 20),
-                            child: InkWell(
-                              child: Card(
-                                color: ColorStyles.petrol,
-                                child: SizedBox(
-                                  height: _cardHeight,
-                                  child: Center(
-                                    child: Text(
-                                      "History",
-                                      style: TextStyles.BodyMediumWhite,
-                                    ),
-                                  ),
-                                ),
+                            child: RoundedCard(
+                              onPressed: model?.onHistoryPressed,
+                              height: _cardHeight,
+                              child: Text(
+                                "History",
+                                style: TextStyles.BodyMediumWhite,
                               ),
                             ),
                           ),
