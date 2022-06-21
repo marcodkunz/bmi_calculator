@@ -76,7 +76,7 @@ class InputView extends StatelessWidget {
                             style: TextStyles.TitleMediumWhite,
                           ),
                           CustomSlider(
-                            min: 10,
+                            min: 90,
                             max: 230,
                             initial: model?.currentHeight ?? 170,
                             onChanged: model?.onHeightChanged,
