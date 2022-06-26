@@ -14,11 +14,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: onClick,
-        child: Text(text, style: TextStyles.BodyMediumWhite ),
+        child: Text(text, style: TextStyles.BodyMediumWhite),
         style: TextButton.styleFrom(
-            backgroundColor: ColorStyles.petrol));
+            backgroundColor: ColorStyles.petrol,
+            minimumSize: const Size.fromHeight(50)));
   }
 }
-
-
-

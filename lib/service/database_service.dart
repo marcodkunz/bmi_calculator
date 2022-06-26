@@ -32,6 +32,7 @@ class DatabaseService implements IDatabaseService {
           id INTEGER PRIMARY KEY AUTOINCREMENT, 
           name TEXT NOT NULL, 
           height INTEGER NOT NULL, 
+          weight INTEGER NOT NULL,
           age INTEGER NOT NULL, 
           gender STRING NOT NULL,
           bmi DOUBLE NOT NULL)

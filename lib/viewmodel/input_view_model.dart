@@ -5,14 +5,17 @@ import 'package:bmi_calculator/style/color_styles.dart';
 import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:injectable/injectable.dart';
 
+import '../service/logging/logger.dart';
+
 @injectable
 class InputViewModel extends ViewModelBase {
   final INavigationService _navigationService;
+  final ILogger _logger;
 
-  InputViewModel(this._navigationService);
+  InputViewModel(this._navigationService, this._logger);
 
   double currentHeight = 170;
-  Gender? currentGender;
+  Gender currentGender = Gender.female;
   int currentAge = 25;
   int currentWeight = 80;
   double bmi = 0;
@@ -64,9 +67,18 @@ class InputViewModel extends ViewModelBase {
     setViewState(LoadedState());
   }
 
-  double onCalculate() {
-    bmi = double.parse((currentWeight/(currentHeight*currentHeight)).toStringAsFixed(2));
-    _navigationService.pushNamed(Routes.resultView);
-    return bmi;
+  void onCalculate() {
+    bmi = double.parse(
+        (currentWeight / ((currentHeight / 100) * (currentHeight / 100)))
+            .toStringAsFixed(2));
+    _logger.d("InputViewModel", "Calculated bmi:  ${bmi}: weight: ${currentWeight}, height: ${currentHeight}");
+    var userEntry = UserEntry(
+        age: currentAge,
+        gender: currentGender,
+        height: currentHeight.toInt(),
+        weight: currentWeight.toInt(),
+        bmi: bmi);
+    _logger.d("InputViewModel", "New UserEntry-Object created");
+    _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
   }
 }

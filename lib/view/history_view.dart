@@ -20,40 +20,125 @@ class HistoryView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: ColorStyles.darkPetrol,
-          title: Text("Body Mass Index")),
+          title: Text('Body Mass Index')),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HistoryViewModel?>(
-            viewModel: viewModel,
-            builder: (context, model, child) {
-              if (model?.state is LoadingState || model == null) {
-                return Center(
-                  child: IndeterminateProgressIndicator(),
-                );
-              }
-              return ListView.separated(
-                itemCount: model.userEntries.length,
-                padding: EdgeInsets.all(4),
-                itemBuilder: (BuildContext context, int index) {
-                  var entry = model.userEntries[index];
-                  return Row(
-                    children: [
-                      Text(entry.bmi.toStringAsFixed(2)),
-                      Text(entry.name),
-                      Text(entry.age.toString()),
-                      Icon(entry.gender.toIcon()),
-                      IconButton(
-                        onPressed: () => model.onDelete(entry.id),
-                        icon: Icon(Icons.delete_outline),
-                      )
-                    ],
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
-                },
+          viewModel: viewModel,
+          builder: (context, model, child) {
+            if (model?.state is LoadingState || model == null) {
+              return Center(
+                child: IndeterminateProgressIndicator(),
               );
-            }),
+            }
+            return Column(
+              children: [
+                Container(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text('Name'),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text('BMI'),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text('Age'),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text('Gender'),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text('Delete'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  thickness: 1.5,
+                ),
+                ListView.separated(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: model.userEntries.length,
+                  padding: EdgeInsets.all(4),
+                  itemBuilder: (BuildContext context, int index) {
+                    var entry = model.userEntries[index];
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          left: 20, right: 20, top: 5, bottom: 5),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text(entry.name ?? ""),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text(entry.bmi.toString()),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Text(
+                                entry.age.toString(),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Icon(entry.gender.toIcon())),
+                            ),
+                          ),
+                          Expanded(
+                            child: IconButton(
+                              alignment: Alignment.centerLeft,
+                              onPressed: () => model.onDelete(entry.id),
+                              icon: Icon(Icons.delete_outline),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      thickness: 1,
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

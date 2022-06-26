@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../widget/custom_button.dart';
-import '../widget/custom_textFormField.dart';
+import '../widget/custom_textformfield.dart';
 
 @injectable
 class InputView extends StatelessWidget {
@@ -30,77 +30,101 @@ class InputView extends StatelessWidget {
             builder: (context, model, child) {
               var _cardHeight = MediaQuery.of(context).size.height / 5;
               return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 10),
-                              child: RoundedCard(
-                                onPressed: model?.onFemaleSelected,
-                                height: _cardHeight,
-                                color: model?.colorFemaleCard,
-                                child: Icon(
-                                  Icons.female,
-                                  size: 120,
-                                ),
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20, right: 10),
+                            child: RoundedCard(
+                              onPressed: model?.onFemaleSelected,
+                              height: _cardHeight,
+                              color: model?.colorFemaleCard,
+                              child: Icon(
+                                Icons.female,
+                                size: 120,
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10, right: 20),
-                              child: RoundedCard(
-                                onPressed: model?.onMaleSelected,
-                                height: _cardHeight,
-                                color: model?.colorMaleCard,
-                                child: Icon(
-                                  Icons.male,
-                                  size: 120,
-                                ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10, right: 20),
+                            child: RoundedCard(
+                              onPressed: model?.onMaleSelected,
+                              height: _cardHeight,
+                              color: model?.colorMaleCard,
+                              child: Icon(
+                                Icons.male,
+                                size: 120,
                               ),
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 20, top: 10, right: 20, bottom: 10),
+                    child: RoundedCard(
+                      height: _cardHeight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Height:",
+                            style: TextStyles.BodyMediumWhite,
+                          ),
+                          Text(
+                            "${model?.currentHeight.toInt()} cm",
+                            style: TextStyles.TitleMediumWhite,
+                          ),
+                          CustomSlider(
+                            min: 10,
+                            max: 230,
+                            initial: model?.currentHeight ?? 170,
+                            onChanged: model?.onHeightChanged,
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: 20, top: 10, right: 20, bottom: 10),
-                      child: RoundedCard(
-                        height: _cardHeight,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Height:",
-                              style: TextStyles.BodyMediumWhite,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Padding(
+                          padding: EdgeInsets.only(left: 20, right: 10),
+                          child: RoundedCard(
+                            onPressed: () => {},
+                            height: _cardHeight,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Age:",
+                                  style: TextStyles.BodyMediumWhite,
+                                ),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: CustomTextFormField(
+                                        suffix: 'years',
+                                        onChange: model?.onAgeChanged,
+                                        max: 2)),
+                              ],
                             ),
-                            Text(
-                              "${model?.currentHeight.toInt()} cm",
-                              style: TextStyles.TitleMediumWhite,
-                            ),
-                            CustomSlider(
-                              min: 10,
-                              max: 230,
-                              initial: model?.currentHeight ?? 170,
-                              onChanged: model?.onHeightChanged,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                            padding: EdgeInsets.only(left: 20, right: 10),
+                          ),
+                        )),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10, right: 20),
                             child: RoundedCard(
                               onPressed: () => {},
                               height: _cardHeight,
@@ -108,59 +132,34 @@ class InputView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Age:",
+                                    "Weight:",
                                     style: TextStyles.BodyMediumWhite,
                                   ),
                                   Padding(
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 10),
                                       child: CustomTextFormField(
-                                          suffix: 'years',
-                                          onChange: model?.onAgeChanged,
-                                          max: 2)),
+                                          suffix: 'kg',
+                                          onChange: model?.onWeightChanged,
+                                          max: 3)),
                                 ],
                               ),
                             ),
-                          )),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10, right: 20),
-                              child: RoundedCard(
-                                onPressed: () => {},
-                                height: _cardHeight,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Weight:",
-                                      style: TextStyles.BodyMediumWhite,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: CustomTextFormField(
-                                            suffix: 'kg',
-                                            onChange: model?.onWeightChanged,
-                                            max: 3)),
-                                  ],
-                                ),
-                              ),
-                            ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 15, right: 25, top: 20, bottom: 30),
-                          child: CustomButton(
-                            text: 'Calculate',
-                            onClick: () => model?.onCalculate(),
-                          )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 30, right: 30, bottom: 20, top: 20),
+                    child: CustomButton(
+                      text: 'Calculate',
+                      onClick: () => model?.onCalculate(),
                     ),
-                  ]);
+                  ),
+                ],
+              );
             }),
       ),
     );

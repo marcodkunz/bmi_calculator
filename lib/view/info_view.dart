@@ -23,7 +23,7 @@ class InfoView extends StatelessWidget {
         child: ViewBase<InfoViewModel?>(
             viewModel: viewModel,
             builder: (context, model, child) {
-              return ListViewBuilder();
+              return CustomListView();
             }),
       ),
     );
