@@ -33,7 +33,8 @@ class DatabaseService implements IDatabaseService {
           name TEXT NOT NULL, 
           height INTEGER NOT NULL, 
           age INTEGER NOT NULL, 
-          gender STRING NOT NULL)
+          gender STRING NOT NULL,
+          bmi DOUBLE NOT NULL)
           ''');
       },
       version: _configuration.databaseVersion,

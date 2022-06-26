@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../style/color_styles.dart';
+import '../style/text_styles.dart';
+
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onClick;
@@ -9,6 +12,13 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: onClick, child: Text(text));
+    return TextButton(
+        onPressed: onClick,
+        child: Text(text, style: TextStyles.BodyMediumWhite ),
+        style: TextButton.styleFrom(
+            backgroundColor: ColorStyles.petrol));
   }
 }
+
+
+

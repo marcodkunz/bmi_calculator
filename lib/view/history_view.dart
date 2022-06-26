@@ -6,6 +6,8 @@ import 'package:bmi_calculator/widget/indeterminate_progressindicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
+import '../style/color_styles.dart';
+import '../widget/custom_drawer.dart';
 
 @injectable
 class HistoryView extends StatelessWidget {
@@ -16,6 +18,10 @@ class HistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: ColorStyles.darkPetrol,
+          title: Text("Body Mass Index")),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HistoryViewModel?>(
             viewModel: viewModel,

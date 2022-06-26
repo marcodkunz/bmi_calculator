@@ -13,6 +13,9 @@ class InputViewModel extends ViewModelBase {
 
   double currentHeight = 170;
   Gender? currentGender;
+  int currentAge = 25;
+  int currentWeight = 80;
+  double bmi = 0;
 
   get colorFemaleCard => currentGender == Gender.female
       ? ColorStyles.lightPetrol
@@ -28,6 +31,18 @@ class InputViewModel extends ViewModelBase {
 
   void onHeightChanged(double value) {
     currentHeight = value.roundToDouble();
+    setViewState(LoadedState());
+  }
+
+  void onWeightChanged(String value) {
+    var weight = int.parse(value);
+    currentWeight = weight;
+    setViewState(LoadedState());
+  }
+
+  void onAgeChanged(String value) {
+    var age = int.parse(value);
+    currentAge = age;
     setViewState(LoadedState());
   }
 
@@ -47,5 +62,11 @@ class InputViewModel extends ViewModelBase {
   void onMaleSelected() {
     currentGender = Gender.male;
     setViewState(LoadedState());
+  }
+
+  double onCalculate() {
+    bmi = double.parse((currentWeight/(currentHeight*currentHeight)).toStringAsFixed(2));
+    _navigationService.pushNamed(Routes.resultView);
+    return bmi;
   }
 }

@@ -5,6 +5,9 @@ import 'package:bmi_calculator/widget/rounded_card.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../style/color_styles.dart';
+import '../widget/custom_drawer.dart';
+
 @injectable
 class HomeView extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -14,6 +17,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: ColorStyles.darkPetrol,
+          title: Text("Body Mass Index")),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HomeViewModel?>(
           viewModel: viewModel,
@@ -42,10 +49,7 @@ class HomeView extends StatelessWidget {
                           child: RoundedCard(
                             onPressed: model?.onInfoPressed,
                             height: _cardHeight,
-                            child: Text(
-                              "Info",
-                              style: TextStyles.BodyMediumWhite,
-                            ),
+                            child: Icon(Icons.info_outline, size: 60),
                           ),
                         ),
                       ),
@@ -55,10 +59,7 @@ class HomeView extends StatelessWidget {
                           child: RoundedCard(
                             onPressed: model?.onHistoryPressed,
                             height: _cardHeight,
-                            child: Text(
-                              "History",
-                              style: TextStyles.BodyMediumWhite,
-                            ),
+                            child: Icon(Icons.person, size: 60),
                           ),
                         ),
                       ),
@@ -67,13 +68,13 @@ class HomeView extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 20),
+                  EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 20),
                   child: RoundedCard(
                     onPressed: model?.onInputPressed,
                     height: _cardHeight,
                     child: Text(
-                      "New calculation",
-                      style: TextStyles.BodyMediumWhite,
+                      "Calculate",
+                      style: TextStyles.TitleMediumWhite,
                     ),
                   ),
                 ),
