@@ -35,49 +35,55 @@ class ResultView extends StatelessWidget {
                   child: IndeterminateProgressIndicator(),
                 );
               }
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Your BMI: ' + userEntry.bmi.toString(),
-                        style: TextStyles.TitleMediumWhite),
-                    Text(model?.currentCategory ?? ""),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomResultView(
-                        title: 'Age:',
-                        value: userEntry.age.toString() + ' years'),
-                    CustomResultView(
-                        title: 'Height:',
-                        value: userEntry.height.toString() + ' cm'),
-                    CustomResultView(
-                        title: 'Weight:',
-                        value: userEntry.weight.toString() + ' kg'),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: TextFormField(
-                            cursorColor: ColorStyles.white,
-                            textAlign: TextAlign.center,
-                            style: TextStyles.mediumWhite,
-                            textInputAction: TextInputAction.done,
-                            decoration:
-                                InputDecoration(hintText: 'Enter your Name'),
-                            onChanged: model?.onNameChanged),
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Your BMI: ' + userEntry.bmi.toString(),
+                          style: TextStyles.TitleMediumWhite),
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: 15, right: 25, top: 20, bottom: 30),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: CustomButton(
-                            text: 'Save', onClick: () => model?.onSave()),
+                      Text(model?.currentCategory ?? ""),
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
-                  ],
+                      CustomResultView(
+                          title: 'Age:',
+                          value: userEntry.age.toString() + ' years'),
+                      CustomResultView(
+                          title: 'Height:',
+                          value: userEntry.height.toString() + ' cm'),
+                      CustomResultView(
+                          title: 'Weight:',
+                          value: userEntry.weight.toString() + ' kg'),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: TextFormField(
+                              cursorColor: ColorStyles.white,
+                              textAlign: TextAlign.center,
+                              style: TextStyles.mediumWhite,
+                              textInputAction: TextInputAction.done,
+                              decoration:
+                                  InputDecoration(hintText: 'Enter your Name'),
+                              onChanged: model?.onNameChanged),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 15, right: 25, top: 20, bottom: 30),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: CustomButton(
+                              text: 'Save', onClick: () => model?.onSave()),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
