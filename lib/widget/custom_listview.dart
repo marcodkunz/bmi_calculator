@@ -5,8 +5,10 @@ import '../model/bmi_range.dart';
 class CustomListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
+
         children: [
           Container(
             padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 10),
@@ -16,11 +18,11 @@ class CustomListView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width / 3 * 1) - 20,
+                      width: (width / 3) - 20,
                       child: Text('Range', textAlign: TextAlign.left),
                     ),
                     Container(
-                      width: (MediaQuery.of(context).size.width / 3 * 2) - 20,
+                      width: (width / 3 * 2) - 20,
                       child: Text(
                         'Description',
                         textAlign: TextAlign.left,
@@ -44,7 +46,7 @@ class CustomListView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: (MediaQuery.of(context).size.width / 3 * 1) - 20,
+                      width: (width / 3) - 20,
                       child: Text(
                         bmiRange.elementAt(index).startValue.toString() +
                             ' - ' +
@@ -53,7 +55,7 @@ class CustomListView extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: (MediaQuery.of(context).size.width / 3 * 2) - 20,
+                      width: (width / 3 * 2) - 20,
                       child: Text(
                         bmiRange.elementAt(index).category,
                         textAlign: TextAlign.left,
