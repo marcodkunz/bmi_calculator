@@ -4,7 +4,6 @@ import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:bmi_calculator/viewmodel/history_view_model.dart';
 import 'package:bmi_calculator/widget/indeterminate_progressindicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 import '../style/color_styles.dart';
 import '../widget/custom_drawer.dart';
@@ -39,6 +38,7 @@ class HistoryView extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: Padding(
@@ -89,6 +89,7 @@ class HistoryView extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: 20, right: 20, top: 5, bottom: 5),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: Padding(

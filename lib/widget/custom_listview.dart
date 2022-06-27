@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../model/bmi_range.dart';
 
@@ -12,17 +13,18 @@ class CustomListView extends StatelessWidget {
             child: Column(
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(),
-                      child: Text('Range'),
+                    Container(
+                      width: (MediaQuery.of(context).size.width / 3 * 1) - 20,
+                      child: Text('Range', textAlign: TextAlign.left),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: 66,
-                          right: 10),
-                      child: Text('Description'),
+                    Container(
+                      width: (MediaQuery.of(context).size.width / 3 * 2) - 20,
+                      child: Text(
+                        'Description',
+                        textAlign: TextAlign.left,
+                      ),
                     ),
                   ],
                 ),
@@ -39,21 +41,23 @@ class CustomListView extends StatelessWidget {
                 padding:
                     EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(),
+                    Container(
+                      width: (MediaQuery.of(context).size.width / 3 * 1) - 20,
                       child: Text(
-                          bmiRange.elementAt(index).startValue.toString() +
-                              ' - ' +
-                              bmiRange.elementAt(index).endValue.toString()),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 50,
-                        right: 10,
+                        bmiRange.elementAt(index).startValue.toString() +
+                            ' - ' +
+                            bmiRange.elementAt(index).endValue.toString(),
+                        textAlign: TextAlign.left,
                       ),
-                      child: Text(bmiRange.elementAt(index).category),
+                    ),
+                    Container(
+                      width: (MediaQuery.of(context).size.width / 3 * 2) - 20,
+                      child: Text(
+                        bmiRange.elementAt(index).category,
+                        textAlign: TextAlign.left,
+                      ),
                     ),
                   ],
                 ),
