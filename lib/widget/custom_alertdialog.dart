@@ -1,7 +1,6 @@
 import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../style/text_styles.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final String title;

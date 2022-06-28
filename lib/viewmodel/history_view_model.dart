@@ -32,7 +32,6 @@ class HistoryViewModel extends ViewModelBase {
   }
 
   Future<void> onDelete(int? id) async {
-
     if (id == null || id <= 0) return;
 
     // TODO implement delete

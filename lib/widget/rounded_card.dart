@@ -24,8 +24,8 @@ class RoundedCard extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(4),
-          child:  Center(
-              child: child,
+          child: Center(
+            child: child,
           ),
         ),
       ),

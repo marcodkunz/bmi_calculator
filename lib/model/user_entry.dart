@@ -20,7 +20,6 @@ class UserEntry {
       required this.gender,
       required this.bmi});
 
-
   static UserEntry fromMap(Map<String, Object?> map) {
     return UserEntry(
       id: map['id'] as int,

@@ -2,11 +2,10 @@ import 'package:bmi_calculator/extension/gender_extension.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:bmi_calculator/viewmodel/history_view_model.dart';
+import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/indeterminate_progressindicator.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import '../style/color_styles.dart';
-import '../widget/custom_drawer.dart';
 
 @injectable
 class HistoryView extends StatelessWidget {
@@ -17,10 +16,8 @@ class HistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-        return Scaffold(
-      appBar: AppBar(
-          backgroundColor: ColorStyles.darkPetrol,
-          title: Text('Body Mass Index')),
+    return Scaffold(
+      appBar: AppBar(title: Text('Body Mass Index')),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HistoryViewModel?>(

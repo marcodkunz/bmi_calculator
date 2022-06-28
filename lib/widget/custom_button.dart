@@ -1,13 +1,12 @@
+import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../style/color_styles.dart';
-import '../style/text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
 
-  const CustomButton({Key? key, required this.text, required this.onClick})
+  const CustomButton({Key? key, required this.text, this.onClick})
       : super(key: key);
 
   @override

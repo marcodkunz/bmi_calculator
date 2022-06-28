@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class InfoViewModel extends ViewModelBase {
   final INavigationService _navigationService;
+
   InfoViewModel(this._navigationService);
 
   Future<void> onSubmit() async {

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bmi_calculator/model/bmi_range.dart';
 import 'package:flutter/material.dart';
-import '../model/bmi_range.dart';
 
 class CustomListView extends StatelessWidget {
   @override
@@ -8,7 +7,6 @@ class CustomListView extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
-
         children: [
           Container(
             padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 10),

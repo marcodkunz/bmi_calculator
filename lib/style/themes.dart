@@ -7,5 +7,6 @@ class Themes {
     primaryColor: ColorStyles.lightPetrol,
     backgroundColor: ColorStyles.darkPetrol,
     scaffoldBackgroundColor: ColorStyles.darkPetrol,
+    appBarTheme: AppBarTheme(backgroundColor: ColorStyles.darkPetrol),
   );
 }

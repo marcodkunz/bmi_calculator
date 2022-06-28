@@ -1,15 +1,15 @@
+import 'package:bmi_calculator/model/user_entry.dart';
+import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
+import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:bmi_calculator/viewmodel/result_view_model.dart';
+import 'package:bmi_calculator/widget/custom_button.dart';
+import 'package:bmi_calculator/widget/custom_drawer.dart';
+import 'package:bmi_calculator/widget/custom_listview_result.dart';
 import 'package:bmi_calculator/widget/indeterminate_progressindicator.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import '../model/user_entry.dart';
-import '../style/color_styles.dart';
-import '../style/text_styles.dart';
-import '../viewmodel/base/view_model_base.dart';
-import '../widget/custom_button.dart';
-import '../widget/custom_drawer.dart';
-import '../widget/custom_listview_result.dart';
 
 @injectable
 class ResultView extends StatelessWidget {
@@ -21,9 +21,7 @@ class ResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     final userEntry = ModalRoute.of(context)!.settings.arguments as UserEntry;
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: ColorStyles.darkPetrol,
-          title: Text("Body Mass Index")),
+      appBar: AppBar(title: Text("Body Mass Index")),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<ResultViewModel?>(

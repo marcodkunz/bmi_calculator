@@ -1,5 +1,5 @@
+import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:flutter/material.dart';
-import '../style/text_styles.dart';
 
 class CustomResultView extends StatelessWidget {
   final String title;
@@ -23,12 +23,20 @@ class CustomResultView extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 80),
                 width: (MediaQuery.of(context).size.width / 2) - 10,
-                child: Text(title, style: TextStyles.mediumWhite, textAlign: TextAlign.center,),
+                child: Text(
+                  title,
+                  style: TextStyles.mediumWhite,
+                  textAlign: TextAlign.center,
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(right: 120),
                 width: (MediaQuery.of(context).size.width / 2) - 10,
-                child: Text(value, style: TextStyles.mediumWhite, textAlign: TextAlign.center,),
+                child: Text(
+                  value,
+                  style: TextStyles.mediumWhite,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),
