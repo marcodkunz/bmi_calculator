@@ -5,6 +5,7 @@ import 'package:bmi_calculator/viewmodel/history_view_model.dart';
 import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/indeterminate_progressindicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -15,17 +16,27 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: Text('Body Mass Index')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.historyTitle)),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HistoryViewModel?>(
           viewModel: viewModel,
           builder: (context, model, child) {
-            if (model?.state is LoadingState || model == null) {
-              return Center(
+            if (model == null || model.state is LoadingState) {
+              return const Center(
                 child: IndeterminateProgressIndicator(),
+              );
+            }
+            if (model.state is ErrorState) {
+              return Center(
+                child: Text(AppLocalizations.of(context)!.genericError),
+              );
+            }
+            if (model.state is EmptyState) {
+              return Center(
+                child: Text(AppLocalizations.of(context)!.noEntries),
               );
             }
             return Column(
@@ -39,31 +50,36 @@ class HistoryView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: (width / 3) - 20,
-                            child: Text('Name'),
+                            width: (_width / 3) - 20,
+                            child: Text(
+                                AppLocalizations.of(context)!.historyLabelName),
                           ),
                           Container(
-                            width: (width / 6) - 20,
-                            child: Text('BMI'),
+                            width: (_width / 6) - 20,
+                            child: Text(
+                                AppLocalizations.of(context)!.historyLabelBmi),
                           ),
                           Container(
-                            width: (width / 6) - 20,
-                            child: Text('Age'),
+                            width: (_width / 6) - 20,
+                            child: Text(
+                                AppLocalizations.of(context)!.historyLabelAge),
                           ),
                           Container(
-                            width: (width / 6) - 20,
-                            child: Text('Gender'),
+                            width: (_width / 6) - 20,
+                            child: Text(AppLocalizations.of(context)!
+                                .historyLabelGender),
                           ),
                           Container(
-                            width: (width / 6) - 20,
-                            child: Text('Delete'),
+                            width: (_width / 6) - 20,
+                            child: Text(AppLocalizations.of(context)!
+                                .historyLabelDelete),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1.5,
                 ),
                 ListView.separated(
@@ -80,7 +96,7 @@ class HistoryView extends StatelessWidget {
                           Container(
                               width:
                                   (MediaQuery.of(context).size.width / 3) - 20,
-                              child: Text(entry.name ?? "")),
+                              child: Text(entry.name ?? '')),
                           Container(
                               width:
                                   (MediaQuery.of(context).size.width / 6) - 20,
@@ -110,7 +126,7 @@ class HistoryView extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       thickness: 1,
                     );
                   },

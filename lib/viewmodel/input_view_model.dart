@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:bmi_calculator/common/routes.dart';
 import 'package:bmi_calculator/model/user_entry.dart';
 import 'package:bmi_calculator/service/logging/logger.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
 import 'package:bmi_calculator/style/color_styles.dart';
 import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -33,30 +32,17 @@ class InputViewModel extends ViewModelBase {
       currentHeight >= 10 &&
       currentHeight <= 230 &&
       currentAge >= 1 &&
-      currentAge <= 130 &&
+      currentAge <= 99 &&
       currentWeight >= 10 &&
       currentWeight <= 900;
 
-  Future<void> onSubmit() async {
-    await _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
-  }
+  FocusNode _ageFocusNode = FocusNode();
 
-  void onHeightChanged(double value) {
-    currentHeight = value.roundToDouble();
-    setViewState(LoadedState());
-  }
+  FocusNode get ageFocusNode => _ageFocusNode;
 
-  void onWeightChanged(String value) {
-    var weight = int.parse(value).clamp(10, 900);
-    currentWeight = weight;
-    setViewState(LoadedState());
-  }
+  FocusNode _weightFocusNode = FocusNode();
 
-  void onAgeChanged(String value) {
-    var age = int.parse(value).clamp(1, 130);
-    currentAge = age;
-    setViewState(LoadedState());
-  }
+  FocusNode get weightFocusNode => _weightFocusNode;
 
   void onFemaleSelected() {
     currentGender = Gender.female;
@@ -68,7 +54,35 @@ class InputViewModel extends ViewModelBase {
     setViewState(LoadedState());
   }
 
+  void onHeightChanged(double value) {
+    currentHeight = value.roundToDouble();
+    setViewState(LoadedState());
+  }
+
+  void onAgePressed() {
+    if (_ageFocusNode.canRequestFocus) _ageFocusNode.requestFocus();
+  }
+
+  void onAgeChanged(String value) {
+    var age = int.parse(value).clamp(1, 130);
+    currentAge = age;
+    setViewState(LoadedState());
+  }
+
+  void onWeightPressed() {
+    if (_weightFocusNode.canRequestFocus) _weightFocusNode.requestFocus();
+  }
+
+  void onWeightChanged(String value) {
+    var weight = int.parse(value).clamp(10, 900);
+    currentWeight = weight;
+    setViewState(LoadedState());
+  }
+
   void onCalculate() {
+    _ageFocusNode.unfocus();
+    _weightFocusNode.unfocus();
+
     var bmi = double.parse(
         (currentWeight / ((currentHeight / 100) * (currentHeight / 100)))
             .toStringAsFixed(2));

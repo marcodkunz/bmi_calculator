@@ -1,46 +1,47 @@
+import 'package:bmi_calculator/app_container.dart';
 import 'package:bmi_calculator/common/routes.dart';
-import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/service/navigation/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomDrawer extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: ColorStyles.darkPetrol,
       child: ListView(
         padding: EdgeInsets.only(top: 40),
         children: [
           ListTile(
-            title: const Text('Home'),
+            title: Text(AppLocalizations.of(context)!.drawerHome),
             onTap: () {
-              Navigator.pushNamed(context, Routes.homeView);
+              _navigate(Routes.homeView);
             },
           ),
           Divider(
             thickness: 2,
           ),
           ListTile(
-            title: const Text('Info'),
+            title: Text(AppLocalizations.of(context)!.drawerInfo),
             onTap: () {
-              Navigator.pushNamed(context, Routes.infoView);
+              _navigate(Routes.infoView);
             },
           ),
           Divider(
             thickness: 2,
           ),
           ListTile(
-            title: const Text('Calculate'),
+            title: Text(AppLocalizations.of(context)!.drawerCalculate),
             onTap: () {
-              Navigator.pushNamed(context, Routes.inputView);
+              _navigate(Routes.inputView);
             },
           ),
           Divider(
             thickness: 2,
           ),
           ListTile(
-            title: const Text('History'),
+            title: Text(AppLocalizations.of(context)!.drawerHistory),
             onTap: () {
-              Navigator.pushNamed(context, Routes.historyView);
+              _navigate(Routes.historyView);
             },
           ),
           Divider(
@@ -53,4 +54,9 @@ class CustomDrawer extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  void _navigate(String route) {
+    var navigator = getIt<INavigationService>();
+    navigator.pushNamedAndRemoveUntil(route);
+  }
 }

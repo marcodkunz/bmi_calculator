@@ -6,17 +6,20 @@ class CustomTextFormField extends StatelessWidget {
   final String suffix;
   final ValueChanged<String>? onChange;
   final int max;
+  final FocusNode? focusNode;
 
   const CustomTextFormField(
       {Key? key,
       required this.suffix,
       required this.onChange,
-      required this.max})
+      required this.max,
+      this.focusNode})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        focusNode: focusNode,
         keyboardType: TextInputType.number,
         cursorColor: ColorStyles.white,
         textAlign: TextAlign.center,

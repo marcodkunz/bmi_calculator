@@ -7,6 +7,7 @@ import 'package:bmi_calculator/widget/custom_slider.dart';
 import 'package:bmi_calculator/widget/custom_textformfield.dart';
 import 'package:bmi_calculator/widget/rounded_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -18,7 +19,7 @@ class InputView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Body Mass Index")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.inputTitle)),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<InputViewModel?>(
@@ -79,11 +80,13 @@ class InputView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Height:",
+                                AppLocalizations.of(context)!.inputLabelHeight,
                                 style: TextStyles.BodyMediumWhite,
                               ),
                               Text(
-                                "${model.currentHeight.toInt()} cm",
+                                model.currentHeight.toInt().toString() +
+                                    AppLocalizations.of(context)!
+                                        .inputLabelHeightSuffix,
                                 style: TextStyles.TitleMediumWhite,
                               ),
                               CustomSlider(
@@ -104,20 +107,24 @@ class InputView extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 10),
                                 child: RoundedCard(
-                                  onPressed: () => {},
+                                  onPressed: model.onAgePressed,
                                   height: _cardHeight,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "Age:",
+                                        AppLocalizations.of(context)!
+                                            .inputLabelAge,
                                         style: TextStyles.BodyMediumWhite,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 10),
                                         child: CustomTextFormField(
-                                            suffix: 'years',
+                                            focusNode: model.ageFocusNode,
+                                            suffix:
+                                                AppLocalizations.of(context)!
+                                                    .inputSuffixAge,
                                             onChange: model.onAgeChanged,
                                             max: 2),
                                       ),
@@ -130,20 +137,24 @@ class InputView extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.only(left: 10, right: 20),
                                 child: RoundedCard(
-                                  onPressed: () => {},
+                                  onPressed: model.onWeightPressed,
                                   height: _cardHeight,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "Weight:",
+                                        AppLocalizations.of(context)!
+                                            .inputLabelWeight,
                                         style: TextStyles.BodyMediumWhite,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 10),
                                         child: CustomTextFormField(
-                                            suffix: 'kg',
+                                            focusNode: model.weightFocusNode,
+                                            suffix:
+                                                AppLocalizations.of(context)!
+                                                    .inputLabelWeightSuffix,
                                             onChange: model.onWeightChanged,
                                             max: 3),
                                       ),
@@ -159,7 +170,7 @@ class InputView extends StatelessWidget {
                         padding: EdgeInsets.only(
                             left: 30, right: 30, bottom: 20, top: 20),
                         child: CustomButton(
-                          text: 'Calculate',
+                          text: AppLocalizations.of(context)!.inputCalculate,
                           onClick:
                               model.isValid ? () => model.onCalculate() : null,
                         ),

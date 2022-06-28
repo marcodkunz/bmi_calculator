@@ -4,6 +4,7 @@ import 'package:bmi_calculator/viewmodel/home_view_model.dart';
 import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/rounded_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -15,7 +16,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Body Mass Index")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.homeTitle)),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HomeViewModel?>(
@@ -30,7 +31,7 @@ class HomeView extends StatelessWidget {
                   flex: 4,
                   child: Center(
                     child: Text(
-                      "BMI calculator",
+                      AppLocalizations.of(context)!.homeContentTitle,
                       style: TextStyles.TitleMediumWhite,
                     ),
                   ),
@@ -69,7 +70,7 @@ class HomeView extends StatelessWidget {
                     onPressed: model?.onInputPressed,
                     height: _cardHeight,
                     child: Text(
-                      "Calculate",
+                      AppLocalizations.of(context)!.homeCalculate,
                       style: TextStyles.TitleMediumWhite,
                     ),
                   ),

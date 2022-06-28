@@ -8,5 +8,6 @@ class Themes {
     backgroundColor: ColorStyles.darkPetrol,
     scaffoldBackgroundColor: ColorStyles.darkPetrol,
     appBarTheme: AppBarTheme(backgroundColor: ColorStyles.darkPetrol),
+    drawerTheme: DrawerThemeData(backgroundColor: ColorStyles.darkPetrol),
   );
 }

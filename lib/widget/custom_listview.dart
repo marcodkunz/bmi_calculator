@@ -1,5 +1,7 @@
+import 'package:bmi_calculator/extension/bmi_range_category_extension.dart';
 import 'package:bmi_calculator/model/bmi_range.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomListView extends StatelessWidget {
   @override
@@ -17,12 +19,14 @@ class CustomListView extends StatelessWidget {
                   children: [
                     Container(
                       width: (width / 3) - 20,
-                      child: Text('Range', textAlign: TextAlign.left),
+                      child: Text(
+                          AppLocalizations.of(context)!.customListviewRange,
+                          textAlign: TextAlign.left),
                     ),
                     Container(
                       width: (width / 3 * 2) - 20,
                       child: Text(
-                        'Description',
+                        AppLocalizations.of(context)!.customListviewDescription,
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -55,7 +59,7 @@ class CustomListView extends StatelessWidget {
                     Container(
                       width: (width / 3 * 2) - 20,
                       child: Text(
-                        bmiRange.elementAt(index).category,
+                        bmiRange.elementAt(index).category.translate(context),
                         textAlign: TextAlign.left,
                       ),
                     ),
