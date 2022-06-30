@@ -11,13 +11,17 @@ class WidgetTestApp {
 
   MockNavigatorObserver get navigatorObserverMock => _navigationObserverMock;
 
-  Widget createTestApp(Widget widgetUnderTest) {
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  MaterialApp createTestApp(Widget widgetUnderTest) {
     return MaterialApp(
       home: widgetUnderTest,
       supportedLocales: const [
-        Locale('de'),
+        Locale('en'),
       ],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      navigatorKey: navigatorKey,
       navigatorObservers: [_navigationObserverMock],
       onGenerateRoute: _getPageRoute,
     );

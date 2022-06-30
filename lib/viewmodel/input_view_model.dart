@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:bmi_calculator/common/routes.dart';
+import 'package:bmi_calculator/extension/double_extension.dart';
 import 'package:bmi_calculator/model/user_entry.dart';
 import 'package:bmi_calculator/service/logging/logger.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
 import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/viewmodel/base/failures.dart';
 import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -83,22 +87,25 @@ class InputViewModel extends ViewModelBase {
     _ageFocusNode.unfocus();
     _weightFocusNode.unfocus();
 
-    var bmi = double.parse(
-        (currentWeight / ((currentHeight / 100) * (currentHeight / 100)))
-            .toStringAsFixed(2));
+    var bmi = (currentWeight / pow(currentHeight / 100, 2)).roundDouble();
 
-    _logger.d("InputViewModel",
-        "Calculated bmi:  $bmi: weight: $currentWeight, height: $currentHeight");
+    if (bmi == null || bmi <= 0) {
+      setViewState(ErrorState(EmptyFailure()));
+      _logger.e("InputViewModel", "Calculation went wrong");
+    } else {
+      _logger.d("InputViewModel",
+          "Calculated bmi:  $bmi: weight: $currentWeight, height: $currentHeight");
 
-    var userEntry = UserEntry(
-        age: currentAge,
-        gender: currentGender!,
-        height: currentHeight.toInt(),
-        weight: currentWeight.toInt(),
-        bmi: bmi);
+      var userEntry = UserEntry(
+          age: currentAge,
+          gender: currentGender!,
+          height: currentHeight.toInt(),
+          weight: currentWeight.toInt(),
+          bmi: bmi);
 
-    _logger.d("InputViewModel", "New UserEntry-Object created");
+      _logger.d("InputViewModel", "New UserEntry-Object created");
 
-    _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
+      _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
+import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
 import 'package:bmi_calculator/viewmodel/input_view_model.dart';
 import 'package:bmi_calculator/widget/custom_button.dart';
 import 'package:bmi_calculator/widget/custom_drawer.dart';
@@ -26,6 +27,12 @@ class InputView extends StatelessWidget {
             viewModel: viewModel,
             builder: (context, model, child) {
               if (model == null) return SizedBox.shrink();
+
+              if (model.state is ErrorState) {
+                return Center(
+                  child: Text(AppLocalizations.of(context)!.genericError),
+                );
+              }
 
               var _cardHeight = MediaQuery.of(context).size.height / 5;
 
