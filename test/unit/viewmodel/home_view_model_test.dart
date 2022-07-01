@@ -12,6 +12,9 @@ void main() {
   setUp(() {
     _navigationService = MockINavigationService();
     _viewModel = HomeViewModel(_navigationService);
+
+    when(_navigationService.pushNamed(any))
+        .thenAnswer((_) => Future.value());
   });
 
   test('onInfoPressed()', () async {
@@ -20,12 +23,12 @@ void main() {
   });
 
   test('onHistoryPressed()', () async {
-    await _viewModel.onInfoPressed();
+    await _viewModel.onHistoryPressed();
     verify(_navigationService.pushNamed(Routes.historyView));
   });
 
   test('onInputPressed()', () async {
-    await _viewModel.onInfoPressed();
+    await _viewModel.onInputPressed();
     verify(_navigationService.pushNamed(Routes.inputView));
   });
 }
