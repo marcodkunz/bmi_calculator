@@ -1,16 +1,29 @@
 name: Flutter build and test
-on: [push]
+on: [ push ]
 jobs:
   Build-And-Test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter pub get
-      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
-      - run: flutter analyze
-      - run: flutter test
-      - run: flutter build apk -t lib/main_prod.dart
-      - run: flutter build appbundle -t lib/main_prod.dart
+      - name: Get dependencies
+        run: |
+          flutter pub get
+          flutter packages pub run build_runner build --delete-conflicting-outputs
+      - name: Analyze
+        run: flutter analyze
+      - name: Appbundle build
+        run: flutter build appbundle -t lib/main_prod.dart
+      - name: Android build
+        run: flutter build apk -t lib/main_prod.dart
+      - name: Test
+        run: flutter test --coverage
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info
+          fail_ci_if_error: true
+          verbose: true
