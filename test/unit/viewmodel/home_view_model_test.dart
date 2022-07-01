@@ -13,8 +13,7 @@ void main() {
     _navigationService = MockINavigationService();
     _viewModel = HomeViewModel(_navigationService);
 
-    when(_navigationService.pushNamed(any))
-        .thenAnswer((_) => Future.value());
+    when(_navigationService.pushNamed(any)).thenAnswer((_) => Future.value());
   });
 
   test('onInfoPressed()', () async {
