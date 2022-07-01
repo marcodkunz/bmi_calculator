@@ -30,14 +30,15 @@ class ResultViewModel extends ViewModelBase {
       setViewState(ErrorState(EmptyFailure()));
     } else {
       _logger.d("ResultViewModel", "Loaded UserEntry-Object into ResultView");
-      var _currentRange = bmiRange
+      currentCategory = bmiRange
           .where((element) =>
               element.startValue <= _currentEntry!.bmi &&
               element.endValue >= _currentEntry!.bmi)
-          .first;
-      currentCategory = _currentRange.category;
+          .first
+          .category;
       _logger.d("ResultViewModel",
           "Got Category to BMI-Result: ${_currentEntry?.bmi}, Category: $currentCategory");
+      setViewState(LoadedState());
     }
   }
 
@@ -52,7 +53,13 @@ class ResultViewModel extends ViewModelBase {
   }
 
   void onSave() {
-    _databaseService.insertUserEntry(_currentEntry!);
-    _navigationService.pushNamedAndRemoveUntil(Routes.historyView);
+    if (currentEntry == null) {
+      _logger.e("ResultViewModel", "Called onSave with empty entry");
+      setViewState(ErrorState(EmptyFailure()));
+    } else {
+      _databaseService.insertUserEntry(currentEntry!);
+      _navigationService.pushNamedAndRemoveUntil(Routes.historyView);
+      setViewState(LoadedState());
+    }
   }
 }

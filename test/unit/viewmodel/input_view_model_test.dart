@@ -16,8 +16,6 @@ void main() {
   setUp(() {
     _navigationService = MockINavigationService();
     _viewModel = InputViewModel(_navigationService, NoLogger());
-
-    when(_navigationService.pushNamed(any)).thenAnswer((_) => Future.value());
   });
 
   group('gender selection', () {
@@ -138,8 +136,11 @@ void main() {
 
       _viewModel.onCalculate();
 
-      UserEntry? _userEntry = verify(_navigationService.pushNamed(Routes.resultView,
-          arguments: captureAnyNamed('arguments'))).captured.single;
+      UserEntry? _userEntry = verify(_navigationService.pushNamed(
+              Routes.resultView,
+              arguments: captureAnyNamed('arguments')))
+          .captured
+          .single;
 
       expect(_userEntry, isNotNull);
       expect(_userEntry is UserEntry, true);
