@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/extension/bmi_range_category_extension.dart';
 import 'package:bmi_calculator/model/bmi_range.dart';
 import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:flutter/material.dart';
