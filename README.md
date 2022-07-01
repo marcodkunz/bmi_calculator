@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/marcodkunz/bmi_calculator/branch/main/graph/badge.svg?token=9C2DVZM3V3)](https://codecov.io/gh/marcodkunz/bmi_calculator)
+
 # BMI calculator
 
 This is a user based BMI calculator, written with Flutter.
