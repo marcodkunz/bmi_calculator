@@ -1,24 +1,17 @@
-import 'package:bmi_calculator/view/base/view_base.dart';
-import 'package:bmi_calculator/viewmodel/info_view_model.dart';
+import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/custom_listview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class InfoView extends StatelessWidget {
-  final InfoViewModel viewModel;
-  const InfoView(this.viewModel);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ViewBase<InfoViewModel?>(
-            viewModel: viewModel,
-            builder: (context, model, child) {
-              return ListViewBuilder();
-            }),
-      ),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.infoTitle)),
+      drawer: CustomDrawer(),
+      body: SafeArea(child: CustomListView()),
     );
   }
 }

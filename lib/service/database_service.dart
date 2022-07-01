@@ -9,9 +9,11 @@ abstract class IDatabaseService {
   Future<void> insertUserEntry(UserEntry userEntry);
 
   Future<List<UserEntry>> getAllUserEntries([int? limit]);
+
+  Future<int> removeUserEntry(int id);
 }
 
-@Injectable(as: IDatabaseService)
+@Singleton(as: IDatabaseService)
 class DatabaseService implements IDatabaseService {
   final Configuration _configuration;
   final ILogger _logger;
@@ -32,8 +34,10 @@ class DatabaseService implements IDatabaseService {
           id INTEGER PRIMARY KEY AUTOINCREMENT, 
           name TEXT NOT NULL, 
           height INTEGER NOT NULL, 
+          weight INTEGER NOT NULL,
           age INTEGER NOT NULL, 
-          gender STRING NOT NULL)
+          gender STRING NOT NULL,
+          bmi DOUBLE NOT NULL)
           ''');
       },
       version: _configuration.databaseVersion,
@@ -58,5 +62,13 @@ class DatabaseService implements IDatabaseService {
       _users.add(UserEntry.fromMap(map));
     });
     return _users;
+  }
+
+  @override
+  Future<int> removeUserEntry(int id) async {
+    await _initialize();
+    var _count =
+        await _database!.delete(_tableBmi, where: 'id = ?', whereArgs: [id]);
+    return _count;
   }
 }

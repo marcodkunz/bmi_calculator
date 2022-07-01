@@ -1,8 +1,10 @@
 import 'package:bmi_calculator/style/text_styles.dart';
 import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/home_view_model.dart';
+import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/rounded_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -14,6 +16,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.homeTitle)),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: ViewBase<HomeViewModel?>(
           viewModel: viewModel,
@@ -27,7 +31,7 @@ class HomeView extends StatelessWidget {
                   flex: 4,
                   child: Center(
                     child: Text(
-                      "BMI calculator",
+                      AppLocalizations.of(context)!.homeContentTitle,
                       style: TextStyles.TitleMediumWhite,
                     ),
                   ),
@@ -42,10 +46,7 @@ class HomeView extends StatelessWidget {
                           child: RoundedCard(
                             onPressed: model?.onInfoPressed,
                             height: _cardHeight,
-                            child: Text(
-                              "Info",
-                              style: TextStyles.BodyMediumWhite,
-                            ),
+                            child: Icon(Icons.info_outline, size: 60),
                           ),
                         ),
                       ),
@@ -55,10 +56,7 @@ class HomeView extends StatelessWidget {
                           child: RoundedCard(
                             onPressed: model?.onHistoryPressed,
                             height: _cardHeight,
-                            child: Text(
-                              "History",
-                              style: TextStyles.BodyMediumWhite,
-                            ),
+                            child: Icon(Icons.person, size: 60),
                           ),
                         ),
                       ),
@@ -72,8 +70,8 @@ class HomeView extends StatelessWidget {
                     onPressed: model?.onInputPressed,
                     height: _cardHeight,
                     child: Text(
-                      "New calculation",
-                      style: TextStyles.BodyMediumWhite,
+                      AppLocalizations.of(context)!.homeCalculate,
+                      style: TextStyles.TitleMediumWhite,
                     ),
                   ),
                 ),

@@ -13,7 +13,6 @@ class TextStyles {
 
   static final TextStyle BodyMediumBlack =
       TextStyle(height: 1.5, fontSize: 16).merge(mediumBlack);
-
   static final TextStyle TitleMediumWhite =
       TextStyle(height: 1.5, fontSize: 32).merge(mediumWhite);
   static final TextStyle BodyMediumWhite =

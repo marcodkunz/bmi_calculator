@@ -8,6 +8,7 @@ import 'package:bmi_calculator/view/history_view.dart';
 import 'package:bmi_calculator/view/home_view.dart';
 import 'package:bmi_calculator/view/info_view.dart';
 import 'package:bmi_calculator/view/input_view.dart';
+import 'package:bmi_calculator/view/result_view.dart';
 import 'package:bmi_calculator/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -38,6 +39,8 @@ class _BmiAppState extends State<BmiApp> {
         return _createRoute(settings, getIt<HistoryView>(), false);
       case Routes.infoView:
         return _createRoute(settings, getIt<InfoView>(), false);
+      case Routes.resultView:
+        return _createRoute(settings, getIt<ResultView>(), false);
       default:
         return _createRoute(
             settings,

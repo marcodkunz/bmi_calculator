@@ -1,43 +1,52 @@
+import 'dart:math';
+
 import 'package:bmi_calculator/common/routes.dart';
+import 'package:bmi_calculator/extension/double_extension.dart';
 import 'package:bmi_calculator/model/user_entry.dart';
+import 'package:bmi_calculator/service/logging/logger.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
 import 'package:bmi_calculator/style/color_styles.dart';
+import 'package:bmi_calculator/viewmodel/base/failures.dart';
 import 'package:bmi_calculator/viewmodel/base/view_model_base.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class InputViewModel extends ViewModelBase {
   final INavigationService _navigationService;
+  final ILogger _logger;
 
-  InputViewModel(this._navigationService);
+  InputViewModel(this._navigationService, this._logger);
 
   double currentHeight = 170;
   Gender? currentGender;
+  int currentAge = 25;
+  int currentWeight = 80;
 
-  get colorFemaleCard => currentGender == Gender.female
+  Color get colorFemaleCard => currentGender == Gender.female
       ? ColorStyles.lightPetrol
       : ColorStyles.petrol;
 
-  get colorMaleCard => currentGender == Gender.male
+  Color get colorMaleCard => currentGender == Gender.male
       ? ColorStyles.lightPetrol
       : ColorStyles.petrol;
 
-  Future<void> onSubmit() async {
-    await _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
-  }
+  bool get isValid =>
+      currentGender != null &&
+      currentHeight >= 10 &&
+      currentHeight <= 230 &&
+      currentAge >= 1 &&
+      currentAge <= 99 &&
+      currentWeight >= 10 &&
+      currentWeight <= 900;
 
-  void onHeightChanged(double value) {
-    currentHeight = value.roundToDouble();
-    setViewState(LoadedState());
-  }
+  FocusNode _ageFocusNode = FocusNode();
 
-  Future<void> onInfoPressed() async {
-    await _navigationService.pushNamed(Routes.infoView);
-  }
+  FocusNode get ageFocusNode => _ageFocusNode;
 
-  Future<void> onHistoryPressed() async {
-    await _navigationService.pushNamed(Routes.historyView);
-  }
+  FocusNode _weightFocusNode = FocusNode();
+
+  FocusNode get weightFocusNode => _weightFocusNode;
 
   void onFemaleSelected() {
     currentGender = Gender.female;
@@ -47,5 +56,56 @@ class InputViewModel extends ViewModelBase {
   void onMaleSelected() {
     currentGender = Gender.male;
     setViewState(LoadedState());
+  }
+
+  void onHeightChanged(double value) {
+    currentHeight = value.roundToDouble();
+    setViewState(LoadedState());
+  }
+
+  void onAgePressed() {
+    if (_ageFocusNode.canRequestFocus) _ageFocusNode.requestFocus();
+  }
+
+  void onAgeChanged(String value) {
+    var age = int.parse(value).clamp(1, 130);
+    currentAge = age;
+    setViewState(LoadedState());
+  }
+
+  void onWeightPressed() {
+    if (_weightFocusNode.canRequestFocus) _weightFocusNode.requestFocus();
+  }
+
+  void onWeightChanged(String value) {
+    var weight = int.parse(value).clamp(10, 900);
+    currentWeight = weight;
+    setViewState(LoadedState());
+  }
+
+  void onCalculate() {
+    _ageFocusNode.unfocus();
+    _weightFocusNode.unfocus();
+
+    var bmi = (currentWeight / pow(currentHeight / 100, 2)).roundDouble();
+
+    if (bmi == null || bmi <= 0) {
+      setViewState(ErrorState(EmptyFailure()));
+      _logger.e("InputViewModel", "Calculation went wrong");
+    } else {
+      _logger.d("InputViewModel",
+          "Calculated bmi:  $bmi: weight: $currentWeight, height: $currentHeight");
+
+      var userEntry = UserEntry(
+          age: currentAge,
+          gender: currentGender!,
+          height: currentHeight.toInt(),
+          weight: currentWeight.toInt(),
+          bmi: bmi);
+
+      _logger.d("InputViewModel", "New UserEntry-Object created");
+
+      _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
+    }
   }
 }

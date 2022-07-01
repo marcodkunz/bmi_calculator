@@ -1,0 +1,16 @@
+name: Flutter build and test
+on: [push]
+jobs:
+  Build-And-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk -t lib/main_prod.dart
+      - run: flutter build appbundle -t lib/main_prod.dart

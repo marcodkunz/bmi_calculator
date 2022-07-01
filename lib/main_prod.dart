@@ -15,8 +15,8 @@ Future main() async {
   var app = getIt.get<BmiApp>();
   var logger = getIt.get<ILogger>();
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent)); // TODO define color
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runZonedGuarded(() => runApp(app), (Object error, StackTrace stackTrace) {

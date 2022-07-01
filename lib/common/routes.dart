@@ -4,4 +4,5 @@ class Routes {
   static const String inputView = 'InputView';
   static const String historyView = 'HistoryView';
   static const String infoView = 'InfoView';
+  static const String resultView = 'ResultView';
 }

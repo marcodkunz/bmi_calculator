@@ -1,6 +1,178 @@
 {
-  "welcomeContinue": "Continue",
-  "@welcomeContinue": {
-    "description": "Continue label for button"
+  "historyTitle": "History",
+  "@historyTitle": {
+    "description": "Title on history view"
+  },
+  "historyLabelName": "Name",
+  "@historyLabelName": {
+    "description": "Label name"
+  },
+  "historyLabelBmi": "BMI",
+  "@historyLabelBmi": {
+    "description": "Label bmi"
+  },
+  "historyLabelAge": "Age",
+  "@historyLabelAge": {
+    "description": "Label age"
+  },
+  "historyLabelGender": "Gender",
+  "@historyLabelGender": {
+    "description": "Label gender"
+  },
+  "historyLabelDelete": "Delete",
+  "@historyLabelDelete": {
+    "description": "Label delete"
+  },
+  "noEntries": "No entries yet",
+  "@noEntries": {
+    "description": "Message for empty history"
+  },
+  "homeTitle": "Body Mass Index",
+  "@homeTitle": {
+    "description": "Title on home view"
+  },
+  "homeContentTitle": "BMI calculator",
+  "@homeContentTitle": {
+    "description": "Title shown in content"
+  },
+  "homeCalculate": "Calculate",
+  "@homeCalculate": {
+    "description": "Button calculate"
+  },
+  "infoTitle": "Info",
+  "@infoTitle": {
+    "description": "Title on info view"
+  },
+  "inputTitle": "Calculate",
+  "@inputTitle": {
+    "description": "Title on input view"
+  },
+  "inputLabelHeight": "Height:",
+  "@inputLabelHeight": {
+    "description": "Label of height input"
+  },
+  "inputLabelHeightSuffix": " cm",
+  "@inputLabelHeightSuffix": {
+    "description": "Suffix of height input"
+  },
+  "inputLabelAge": "Age:",
+  "@inputLabelAge": {
+    "description": "Label of age input"
+  },
+  "inputSuffixAge": "years",
+  "@inputSuffixAge": {
+    "description": "Suffix of age input"
+  },
+  "inputLabelWeight": "Weight",
+  "@inputLabelWeight": {
+    "description": "Label of weight input"
+  },
+  "inputLabelWeightSuffix": "kg",
+  "@inputLabelWeightSuffix": {
+    "description": "Suffix of weight input"
+  },
+  "inputCalculate": "Calculate",
+  "@inputCalculate": {
+    "description": "Button calculate"
+  },
+  "resultTitle": "Result",
+  "@resultTitle": {
+    "description": "Title of result view"
+  },
+  "resultLabelBmi": "Your BMI: ",
+  "@resultLabelBmi": {
+    "description": "Label of bmi field"
+  },
+  "resultLabelAge": "Age:",
+  "@resultLabelAge": {
+    "description": "Label of age field"
+  },
+  "resultLabelAgeSuffix": " years",
+  "@resultLabelAgeSuffix": {
+    "description": "Suffix of age field"
+  },
+  "resultLabelHeight": "Height:",
+  "@resultLabelHeight": {
+    "description": "Label of height field"
+  },
+  "resultLabelHeightSuffix": " cm",
+  "@resultLabelHeightSuffix": {
+    "description": "Suffix of height field"
+  },
+  "resultLabelWeight": "Weight:",
+  "@resultLabelWeight": {
+    "description": "Label of height field"
+  },
+  "resultLabelWeightSuffix": " kg",
+  "@resultLabelWeightSuffix": {
+    "description": "Suffix of weight field"
+  },
+  "resultNamePlaceholder": "Enter your name",
+  "@resultNamePlaceholder": {
+    "description": "Placeholder of name field"
+  },
+  "resultSave": "Save",
+  "@resultSave": {
+    "description": "Button save"
+  },
+  "drawerHome": "Home",
+  "@drawerHome": {
+    "description": "Drawer label home"
+  },
+  "drawerInfo": "Info",
+  "@drawerInfo": {
+    "description": "Drawer label info"
+  },
+  "drawerCalculate": "Calculate",
+  "@drawerCalculate": {
+    "description": "Drawer label calculate"
+  },
+  "drawerHistory": "History",
+  "@drawerHistory": {
+    "description": "Drawer label history"
+  },
+  "customListviewRange": "Range",
+  "@customListviewRange": {
+    "description": "Label range"
+  },
+  "customListviewDescription": "Description",
+  "@customListviewDescription": {
+    "description": "Label description"
+  },
+  "bmiRangeUnderweightIII": "Underweight (Severe thinness)",
+  "@bmiRangeUnderweightIII": {
+    "description": "Bmi range for severe thinness"
+  },
+  "bmiRangeUnderweightII": "Underweight (Moderate thinness)",
+  "@bmiRangeUnderweightII": {
+    "description": "Bmi range for moderate thinness"
+  },
+  "bmiRangeUnderweightI": "Underweight (Mild thinness)",
+  "@bmiRangeUnderweightI": {
+    "description": "Bmi range for mild thinness"
+  },
+  "bmiRangeNormal": "Normal range",
+  "@bmiRangeNormal": {
+    "description": "Bmi range for normal"
+  },
+  "bmiRangeOverweight": "Overweight (Pre-obese)",
+  "@bmiRangeOverweight": {
+    "description": "Bmi range for overweight"
+  },
+  "bmiRangeObeseI": "Obese (Class I)",
+  "@bmiRangeObeseI": {
+    "description": "Bmi range for obese I"
+  },
+  "bmiRangeObeseII": "Obese (Class II)",
+  "@bmiRangeObeseII": {
+    "description": "Bmi range for obese II"
+  },
+  "bmiRangeObeseIII": "Obese (Class III)",
+  "@bmiRangeObeseIII": {
+    "description": "Bmi range for obese III"
+  },
+  "genericError": "Something went wrong",
+  "@genericError": {
+    "description": "Generic error message"
   }
 }

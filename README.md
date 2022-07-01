@@ -2,7 +2,7 @@
 
 This is a user based BMI calculator, written with Flutter.
 
-_This app is being implemented as a project at the Juventus Technikerschule._
+> _This app is being implemented as a project at the Juventus Technikerschule._
 
 ## Getting Started
 
