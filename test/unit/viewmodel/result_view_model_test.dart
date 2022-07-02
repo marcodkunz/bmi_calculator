@@ -8,6 +8,7 @@ import 'package:bmi_calculator/viewmodel/result_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../helper/default_user.dart';
 import '../../helper/mock_implementations.mocks.dart';
 
 void main() {
@@ -22,12 +23,9 @@ void main() {
         ResultViewModel(_navigationService, _databaseService, NoLogger());
   });
 
-  UserEntry _userEntry() => UserEntry(
-      height: 170, weight: 80, age: 25, gender: Gender.female, bmi: 27.68);
-
   group('onReady()', () {
     test('successful', () {
-      UserEntry _user = _userEntry();
+      UserEntry _user = defaultUser();
       expect(_viewModel.currentEntry, null);
 
       _viewModel.onReady(_user);
@@ -58,7 +56,7 @@ void main() {
   });
 
   test('onNameChanged()', () {
-    UserEntry _user = _userEntry();
+    UserEntry _user = defaultUser();
 
     _viewModel.onReady(_user);
     _viewModel.onNameChanged('test');
@@ -75,7 +73,7 @@ void main() {
           .thenAnswer((_) => Future.value());
       when(_navigationService.pushNamedAndRemoveUntil(any))
           .thenAnswer((_) => Future.value());
-      UserEntry _user = _userEntry();
+      UserEntry _user = defaultUser();
 
       _viewModel.onReady(_user);
       _viewModel.onSave();
@@ -99,7 +97,8 @@ void main() {
       expect((_viewModel.state as ErrorState).failure is EmptyFailure, true);
 
       verifyNever(_databaseService.insertUserEntry(any));
-      verifyNever(_navigationService.pushNamedAndRemoveUntil(Routes.historyView));
+      verifyNever(
+          _navigationService.pushNamedAndRemoveUntil(Routes.historyView));
     });
   });
 }

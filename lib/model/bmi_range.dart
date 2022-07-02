@@ -22,7 +22,7 @@ class BmiRange {
 
 final List<BmiRange> bmiRange = [
   BmiRange(
-      startValue: 00.0,
+      startValue: 0.0,
       endValue: 16.0,
       category: BmiRangeCategory.underweightIII),
   BmiRange(
