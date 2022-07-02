@@ -46,15 +46,6 @@ void main() {
     });
   });
 
-  test('onSubmit()', () {
-    when(_navigationService.pushNamedAndRemoveUntil(any))
-        .thenAnswer((_) => Future.value());
-
-    _viewModel.onSubmit();
-
-    verify(_navigationService.pushNamedAndRemoveUntil(Routes.homeView));
-  });
-
   test('onNameChanged()', () {
     UserEntry _user = defaultUser();
 
