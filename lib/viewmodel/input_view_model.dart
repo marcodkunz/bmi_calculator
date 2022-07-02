@@ -59,7 +59,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onHeightChanged(double value) {
-    currentHeight = value.roundToDouble();
+    currentHeight = value.roundToDouble().clamp(10, 230);
     setViewState(LoadedState());
   }
 
@@ -68,8 +68,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onAgeChanged(String value) {
-    var age = int.parse(value).clamp(1, 130);
-    currentAge = age;
+    currentAge = int.parse(value).clamp(1, 130);
     setViewState(LoadedState());
   }
 
@@ -78,8 +77,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onWeightChanged(String value) {
-    var weight = int.parse(value).clamp(10, 900);
-    currentWeight = weight;
+    currentWeight = int.parse(value).clamp(10, 900);
     setViewState(LoadedState());
   }
 
@@ -106,6 +104,7 @@ class InputViewModel extends ViewModelBase {
       _logger.d("InputViewModel", "New UserEntry-Object created");
 
       _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
+      setViewState(LoadedState());
     }
   }
 }
