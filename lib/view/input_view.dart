@@ -97,8 +97,8 @@ class InputView extends StatelessWidget {
                                 style: TextStyles.TitleMediumWhite,
                               ),
                               CustomSlider(
-                                min: 10,
-                                max: 230,
+                                min: model.minHeight,
+                                max: model.maxHeight,
                                 initial: model.currentHeight,
                                 onChanged: model.onHeightChanged,
                               ),
@@ -178,8 +178,7 @@ class InputView extends StatelessWidget {
                             left: 30, right: 30, bottom: 20, top: 20),
                         child: CustomButton(
                           text: AppLocalizations.of(context)!.inputCalculate,
-                          onClick:
-                              model.isValid ? () => model.onCalculate() : null,
+                          onClick: model.isValid ? model.onCalculate : null,
                         ),
                       ),
                     ],
