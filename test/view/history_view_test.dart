@@ -56,6 +56,8 @@ void main() {
 
       await tester.pumpWidget(_view);
 
+      expect(find.text('History'), findsOneWidget);
+
       expect(find.text('Name'), findsOneWidget);
       expect(find.text('test'), findsOneWidget);
 
