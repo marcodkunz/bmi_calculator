@@ -54,7 +54,7 @@ class ResultView extends StatelessWidget {
                         height: 10,
                       ),
                       Text(model.currentCategory.translate(context)),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       CustomResultView(

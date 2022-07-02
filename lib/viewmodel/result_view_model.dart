@@ -24,6 +24,7 @@ class ResultViewModel extends ViewModelBase {
   UserEntry? get currentEntry => _currentEntry;
 
   void onReady(UserEntry? _user) {
+    setViewState(LoadingState());
     _currentEntry = _user;
     if (_user == null) {
       _logger.e("ResultViewModel", "Received empty UserEntry");
@@ -42,10 +43,6 @@ class ResultViewModel extends ViewModelBase {
     }
   }
 
-  Future<void> onSubmit() async {
-    await _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
-  }
-
   void onNameChanged(String value) {
     currentName = value;
     _currentEntry?.name = currentName;
@@ -53,6 +50,7 @@ class ResultViewModel extends ViewModelBase {
   }
 
   void onSave() {
+    setViewState(LoadingState());
     if (currentEntry == null) {
       _logger.e("ResultViewModel", "Called onSave with empty entry");
       setViewState(ErrorState(EmptyFailure()));
