@@ -39,25 +39,25 @@ void main() {
     test('onHeightChanged in range', () {
       expect(_viewModel.currentHeight, 170);
 
-      _viewModel.onHeightChanged(11);
+      _viewModel.onHeightChanged(90);
 
-      expect(_viewModel.currentHeight, 11);
+      expect(_viewModel.currentHeight, 90);
       expect(_viewModel.state is LoadedState, true);
     });
     test('onHeightCHanged below range', () {
       expect(_viewModel.currentHeight, 170);
 
-      _viewModel.onHeightChanged(9);
+      _viewModel.onHeightChanged(70);
 
-      expect(_viewModel.currentHeight, 10);
+      expect(_viewModel.currentHeight, 80);
       expect(_viewModel.state is LoadedState, true);
     });
     test('onHeightCHanged below range', () {
       expect(_viewModel.currentHeight, 170);
 
-      _viewModel.onHeightChanged(231);
+      _viewModel.onHeightChanged(273);
 
-      expect(_viewModel.currentHeight, 230);
+      expect(_viewModel.currentHeight, 272);
       expect(_viewModel.state is LoadedState, true);
     });
   });
@@ -82,9 +82,9 @@ void main() {
     test('onAgeChanged below range', () {
       expect(_viewModel.currentAge, 25);
 
-      _viewModel.onAgeChanged('131');
+      _viewModel.onAgeChanged('121');
 
-      expect(_viewModel.currentAge, 130);
+      expect(_viewModel.currentAge, 120);
       expect(_viewModel.state is LoadedState, true);
     });
   });
@@ -109,9 +109,9 @@ void main() {
     test('onWeightChanged below range', () {
       expect(_viewModel.currentWeight, 80);
 
-      _viewModel.onWeightChanged('901');
+      _viewModel.onWeightChanged('451');
 
-      expect(_viewModel.currentWeight, 900);
+      expect(_viewModel.currentWeight, 450);
       expect(_viewModel.state is LoadedState, true);
     });
   });

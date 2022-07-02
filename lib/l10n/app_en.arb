@@ -63,7 +63,7 @@
   "@inputSuffixAge": {
     "description": "Suffix of age input"
   },
-  "inputLabelWeight": "Weight",
+  "inputLabelWeight": "Weight:",
   "@inputLabelWeight": {
     "description": "Label of weight input"
   },

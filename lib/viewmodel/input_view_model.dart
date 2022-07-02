@@ -31,14 +31,26 @@ class InputViewModel extends ViewModelBase {
       ? ColorStyles.lightPetrol
       : ColorStyles.petrol;
 
+  double get minHeight => 80;
+
+  double get maxHeight => 272;
+
+  int get minAge => 1;
+
+  int get maxAge => 120;
+
+  int get minWeight => 10;
+
+  int get maxWeight => 450;
+
   bool get isValid =>
       currentGender != null &&
-      currentHeight >= 10 &&
-      currentHeight <= 230 &&
-      currentAge >= 1 &&
-      currentAge <= 99 &&
-      currentWeight >= 10 &&
-      currentWeight <= 900;
+      currentHeight >= minHeight &&
+      currentHeight <= maxHeight &&
+      currentAge >= minAge &&
+      currentAge <= maxAge &&
+      currentWeight >= minWeight &&
+      currentWeight <= maxWeight;
 
   FocusNode _ageFocusNode = FocusNode();
 
@@ -59,7 +71,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onHeightChanged(double value) {
-    currentHeight = value.roundToDouble().clamp(10, 230);
+    currentHeight = value.roundToDouble().clamp(minHeight, maxHeight);
     setViewState(LoadedState());
   }
 
@@ -68,7 +80,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onAgeChanged(String value) {
-    currentAge = int.parse(value).clamp(1, 130);
+    currentAge = int.parse(value).clamp(minAge, maxAge);
     setViewState(LoadedState());
   }
 
@@ -77,7 +89,7 @@ class InputViewModel extends ViewModelBase {
   }
 
   void onWeightChanged(String value) {
-    currentWeight = int.parse(value).clamp(10, 900);
+    currentWeight = int.parse(value).clamp(minWeight, maxWeight);
     setViewState(LoadedState());
   }
 

@@ -2,6 +2,7 @@ import 'package:bmi_calculator/service/database_service.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
 import 'package:bmi_calculator/viewmodel/history_view_model.dart';
 import 'package:bmi_calculator/viewmodel/home_view_model.dart';
+import 'package:bmi_calculator/viewmodel/input_view_model.dart';
 import 'package:bmi_calculator/viewmodel/result_view_model.dart';
 import 'package:bmi_calculator/viewmodel/splash_view_model.dart';
 import 'package:mockito/annotations.dart';
@@ -15,6 +16,7 @@ import 'mock_implementations.mocks.dart';
   HistoryViewModel,
   HomeViewModel,
   ResultViewModel,
+  InputViewModel,
 ])
 class Mocks {
   MockIDatabaseService get IDatabaseService => MockIDatabaseService();
@@ -23,4 +25,5 @@ class Mocks {
   MockHistoryViewModel get HistoryViewModel => MockHistoryViewModel();
   MockHomeViewModel get HomeViewModel => MockHomeViewModel();
   MockResultViewModel get ResultViewModel => MockResultViewModel();
+  MockInputViewModel get InputViewModel => MockInputViewModel();
 }

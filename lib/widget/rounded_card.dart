@@ -17,8 +17,10 @@ class RoundedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: height,
+      ),
       child: Card(
         color: color,
         child: InkWell(
