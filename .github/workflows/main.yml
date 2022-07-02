@@ -16,8 +16,8 @@ jobs:
         run: flutter analyze
       - name: Appbundle build
         run: flutter build appbundle -t lib/main_prod.dart
-      - name: Android build
-        run: flutter build apk -t lib/main_prod.dart
+      - name: iOS build
+        run: flutter build ios -t lib/main_prod.dart
       - name: Test
         run: flutter test --coverage
       - name: Upload coverage
