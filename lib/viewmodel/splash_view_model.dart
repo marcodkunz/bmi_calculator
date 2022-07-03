@@ -12,7 +12,6 @@ class SplashViewModel extends ViewModelBase {
   @override
   Future init() async {
     await setViewState(LoadingState());
-    await Future.delayed(Duration(seconds: 2));
     await _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
     await setViewState(LoadedState());
   }
