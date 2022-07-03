@@ -1,7 +1,5 @@
-import 'dart:math';
-
 import 'package:bmi_calculator/common/routes.dart';
-import 'package:bmi_calculator/extension/double_extension.dart';
+import 'package:bmi_calculator/helper/bmi_calculator.dart';
 import 'package:bmi_calculator/model/user_entry.dart';
 import 'package:bmi_calculator/service/logging/logger.dart';
 import 'package:bmi_calculator/service/navigation/navigation_service.dart';
@@ -97,7 +95,8 @@ class InputViewModel extends ViewModelBase {
     _ageFocusNode.unfocus();
     _weightFocusNode.unfocus();
 
-    var bmi = (currentWeight / pow(currentHeight / 100, 2)).roundDouble();
+    var bmi =
+        BmiCalculator.calculateBmi(currentHeight, currentWeight.toDouble());
 
     if (bmi == null || bmi <= 0) {
       setViewState(ErrorState(EmptyFailure()));
@@ -118,5 +117,11 @@ class InputViewModel extends ViewModelBase {
       _navigationService.pushNamed(Routes.resultView, arguments: userEntry);
       setViewState(LoadedState());
     }
+  }
+
+  @override
+  Future<void> teardown() async {
+    _ageFocusNode.dispose();
+    _weightFocusNode.dispose();
   }
 }

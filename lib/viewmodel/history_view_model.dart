@@ -28,6 +28,11 @@ class HistoryViewModel extends ViewModelBase {
     }
   }
 
+  @override
+  Future<void> teardown() async {
+    _userEntries.clear();
+  }
+
   Future<void> onDelete(int? id) async {
     if (id == null || id <= 0) return;
     _logger.i("HistoryViewModel", "Removing UserEntry with id=$id");
