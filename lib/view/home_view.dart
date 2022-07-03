@@ -3,6 +3,7 @@ import 'package:bmi_calculator/view/base/view_base.dart';
 import 'package:bmi_calculator/viewmodel/home_view_model.dart';
 import 'package:bmi_calculator/widget/custom_drawer.dart';
 import 'package:bmi_calculator/widget/rounded_card.dart';
+import 'package:bmi_calculator/widget/translate_animation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:injectable/injectable.dart';
@@ -43,20 +44,26 @@ class HomeView extends StatelessWidget {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(left: 20, right: 10),
-                          child: RoundedCard(
-                            onPressed: model?.onInfoPressed,
-                            height: _cardHeight,
-                            child: Icon(Icons.info_outline, size: 60),
+                          child: TranslateAnimationWidget(
+                            direction: AxisDirection.right,
+                            child: RoundedCard(
+                              onPressed: model?.onInfoPressed,
+                              height: _cardHeight,
+                              child: Icon(Icons.info_outline, size: 60),
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(left: 10, right: 20),
-                          child: RoundedCard(
-                            onPressed: model?.onHistoryPressed,
-                            height: _cardHeight,
-                            child: Icon(Icons.person, size: 60),
+                          child: TranslateAnimationWidget(
+                            direction: AxisDirection.left,
+                            child: RoundedCard(
+                              onPressed: model?.onHistoryPressed,
+                              height: _cardHeight,
+                              child: Icon(Icons.person, size: 60),
+                            ),
                           ),
                         ),
                       ),
@@ -66,12 +73,15 @@ class HomeView extends StatelessWidget {
                 Padding(
                   padding:
                       EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 20),
-                  child: RoundedCard(
-                    onPressed: model?.onInputPressed,
-                    height: _cardHeight,
-                    child: Text(
-                      AppLocalizations.of(context)!.homeCalculate,
-                      style: TextStyles.TitleMediumWhite,
+                  child: TranslateAnimationWidget(
+                    direction: AxisDirection.up,
+                    child: RoundedCard(
+                      onPressed: model?.onInputPressed,
+                      height: _cardHeight,
+                      child: Text(
+                        AppLocalizations.of(context)!.homeCalculate,
+                        style: TextStyles.TitleMediumWhite,
+                      ),
                     ),
                   ),
                 ),
