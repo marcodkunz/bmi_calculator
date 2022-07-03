@@ -1,8 +1,7 @@
 import 'package:bmi_calculator/viewmodel/base/failures.dart';
 import 'package:flutter/material.dart';
 
-abstract class ViewModelBase extends ChangeNotifier
-    with WidgetsBindingObserver {
+abstract class ViewModelBase extends ChangeNotifier {
   ViewState _state = EmptyState();
 
   Failure? failure;
@@ -18,8 +17,6 @@ abstract class ViewModelBase extends ChangeNotifier
   Future<void> init() {
     return Future.value();
   }
-
-  WidgetsBindingObserver get lifecycleListener => this;
 
   Future<void> teardown() {
     return Future.value();
