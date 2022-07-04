@@ -67,9 +67,11 @@ void main() {
       UserEntry _user = defaultUser();
 
       _viewModel.onReady(_user);
+      _viewModel.onNameChanged('test');
       _viewModel.onSave();
 
       expect(_viewModel.currentEntry, isNotNull);
+      expect(_viewModel.isValid, true);
       expect(_viewModel.state is LoadedState, true);
 
       verify(_databaseService.insertUserEntry(_user));
