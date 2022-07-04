@@ -26,6 +26,7 @@ void main() {
       when(_viewModel.onReady(any)).thenReturn(null);
       when(_viewModel.currentEntry).thenReturn(defaultUser());
       when(_viewModel.currentCategory).thenReturn(BmiRangeCategory.overweight);
+      when(_viewModel.isValid).thenReturn(false);
     });
     testWidgets('LoadingState', (tester) async {
       when(_viewModel.state).thenReturn(LoadingState());
@@ -60,6 +61,7 @@ void main() {
     when(_viewModel.currentEntry).thenReturn(defaultUser());
     when(_viewModel.currentCategory).thenReturn(BmiRangeCategory.overweight);
     when(_viewModel.onNameChanged(any)).thenReturn(null);
+    when(_viewModel.isValid).thenReturn(true);
     when(_viewModel.state).thenReturn(LoadedState());
 
     await tester.pumpWidget(_view);
@@ -72,6 +74,7 @@ void main() {
     when(_viewModel.currentEntry).thenReturn(defaultUser());
     when(_viewModel.currentCategory).thenReturn(BmiRangeCategory.overweight);
     when(_viewModel.state).thenReturn(LoadedState());
+    when(_viewModel.isValid).thenReturn(true);
     when(_viewModel.onSave()).thenReturn(null);
 
     await tester.pumpWidget(_view);
