@@ -99,7 +99,7 @@ class ResultView extends StatelessWidget {
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: CustomButton(
                               text: AppLocalizations.of(context)!.resultSave,
-                              onClick: () => model.onSave()),
+                              onClick: model.isValid ? model.onSave : null),
                         ),
                       ),
                     ],

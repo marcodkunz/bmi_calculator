@@ -23,6 +23,8 @@ class ResultViewModel extends ViewModelBase {
 
   UserEntry? get currentEntry => _currentEntry;
 
+  bool get isValid => _currentEntry?.name != null;
+
   void onReady(UserEntry? _user) {
     setViewState(LoadingState());
     _currentEntry = _user;
