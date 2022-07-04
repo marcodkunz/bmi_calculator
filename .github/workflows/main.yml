@@ -14,7 +14,7 @@ jobs:
           flutter packages pub run build_runner build --delete-conflicting-outputs
       - name: Analyze
         run: flutter analyze
-      - name: Appbundle build
+      - name: Android build
         run: flutter build appbundle -t lib/main_prod.dart
       - name: iOS build
         run: flutter build ios --no-codesign -t lib/main_prod.dart
