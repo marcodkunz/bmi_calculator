@@ -26,11 +26,7 @@ class _TranslateAnimationWidgetState extends State<TranslateAnimationWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-      lowerBound: -1,
-      upperBound: 0
-    );
+        vsync: this, duration: widget.duration, lowerBound: -1, upperBound: 0);
     _controller.forward();
   }
 
