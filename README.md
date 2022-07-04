@@ -36,3 +36,7 @@ Production:
 
 Run Tests:
 `flutter test`
+
+## Coverage
+
+[![Code Coverage Sunburst](https://codecov.io/gh/marcodkunz/bmi_calculator/branch/main/graphs/sunburst.svg?token=9C2DVZM3V3)](https://codecov.io/gh/marcodkunz/bmi_calculator/branch/main/graphs/sunburst.svg?token=9C2DVZM3V3)

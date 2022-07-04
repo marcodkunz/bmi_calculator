@@ -38,5 +38,3 @@ class ErrorState<T extends Failure> extends ViewState {
 
   ErrorState(this.failure);
 }
-
-class UpdateState extends ViewState {}
